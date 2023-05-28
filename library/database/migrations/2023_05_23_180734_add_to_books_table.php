@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('books', function (Blueprint $table) {
-            $table->integer('year');
+            $table->integer('year')->after('pages');//da sistemare, questo deve andare dopo pageeeees e non so come si faaaaaa
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('books', function (Blueprint $table) {
-            //
+            $table->dropColumn('author');
         });
     }
 };

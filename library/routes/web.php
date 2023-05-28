@@ -23,3 +23,4 @@ Route::get('/libri', [PublicController::class, 'index'])->name('books.index');
 Route::get('/libri/crea', [PublicController::class, 'create'])->name('books.create'); //FORM
 Route::post('/libri/salva', [PublicController::class, 'store'])->name('books.store'); //lo store è la chiamata in post
 Route::get('/libri/{book}/dettagli', [PublicController::class, 'show'])->name('books.show');
+

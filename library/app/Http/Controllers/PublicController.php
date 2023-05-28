@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Http\Requests\BookRequest;
 use App\Models\Book;
 use Illuminate\Http\Request;
 
@@ -19,16 +19,31 @@ class PublicController extends Controller
         return view('books.create'); //crea un form per l'inserimento del libro
     }
 
-    public function store(Request $request)
+    public function store(BookRequest $request)
+    //->1. sostituisco a Request BookRequest (INJECTION)- una volta effettuato ciò dovrò cambiare un bel pò di parametri
     {
+        //->2. commento la validazione dato che la effettuo già in BookRequest
 
-        $request->validate([ //valida i dati quando si clicca su Salva
-            "title" => "required|string",
-            "pages" => "required|numeric",
-            "author" => "required",
-            "year" => "required",
+        // $request->validate([ //valida i dati quando si clicca su Salva
+        //     "title" => "required|string",
+        //     "pages" => "required|numeric",
+        //     "author" => "required",
+        //     "year" => "required",
 
-        ]);
+        // ]);
+
+        //->3. Eseguo le seguenti operazioni:
+        //a) controllo se esiste un file allegato $request->hasFile('image')
+        //b) se il file è stato caricato sul server $request->file('image')
+        //c. infine se è sgato correttamente caricato sul server allora lo rendo booleano $request->file('image')->isValid
+        $path_image = '';
+
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $file_name = $request->file('image')->getClientOriginalName();
+            $path_image = $request->file('image')->storeAs('public/images', $file_name);
+            //storeAs->dove locare
+        }
+
 
         //Book::create richiama il model Book e quindi il metodo statico create, ciò ci permette di connetterci a Table plus
         //questa seconda parte ci permetterà di caricare i dati nel database
@@ -38,6 +53,7 @@ class PublicController extends Controller
             "pages" => $request->pages,
             "author" => $request->author,
             "year" => $request->year,
+            "image" => $path_image,
         ]);
 
         return redirect()->route('books.index')->with('success', 'Libro caricato correttamente!');

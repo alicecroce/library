@@ -17,7 +17,7 @@
                     @endif
 
                     <!-- post del form -->
-                    <form action="{{ route('books.store') }}" method="POST">
+                    <form action="{{ route('books.store') }}" method="POST" enctype="multipart/form-data">
                         @method('POST')
                         @csrf
                         <!-- token per la protezione dei dati -->
@@ -72,6 +72,14 @@
                                 </span>
                             @enderror
                         </div>
+
+                        <!-- immagine-->
+                        <div class="mb-3">
+                            <label for="image">Anno di pubblicazione</label>
+                            <input class="form-control" id="image" name="image" type="file"
+                                value="{{ old('image') }}">
+                        </div>
+
 
 
 
