@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('books', function (Blueprint $table) {
-            $table->integer('year')->after('pages');//da sistemare, questo deve andare dopo pageeeees e non so come si faaaaaa
+            $table->integer('year');
         });
     }
 
