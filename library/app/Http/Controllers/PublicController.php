@@ -20,7 +20,7 @@ class PublicController extends Controller
     }
 
     public function store(BookRequest $request)
-    //->1. sostituisco a Request BookRequest (INJECTION)- una volta effettuato ciò dovrò cambiare un bel pò di parametri
+    //->1. sostituisco a Request il BookRequest (INJECTION)- una volta effettuato ciò dovrò cambiare un bel pò di parametri
     {
         //->2. commento la validazione dato che la effettuo già in BookRequest
 

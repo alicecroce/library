@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PublicController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +25,8 @@ Route::get('/libri/crea', [PublicController::class, 'create'])->name('books.crea
 Route::post('/libri/salva', [PublicController::class, 'store'])->name('books.store'); //lo store è la chiamata in post
 Route::get('/libri/{book}/dettagli', [PublicController::class, 'show'])->name('books.show');
 
+
+Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
+Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create'); //FORM
+Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store'); //lo store è la chiamata in post
+Route::get('/category/{book}/detail', [CategoryController::class, 'show'])->name('category.show');
