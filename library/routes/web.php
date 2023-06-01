@@ -27,6 +27,6 @@ Route::get('/libri/{book}/dettagli', [PublicController::class, 'show'])->name('b
 
 
 Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
-Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create'); //FORM
+Route::get('/category/crea', [CategoryController::class, 'create'])->name('category.crea'); //FORM
 Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store'); //lo store è la chiamata in post
 Route::get('/category/{book}/detail', [CategoryController::class, 'show'])->name('category.show');
