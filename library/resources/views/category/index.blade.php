@@ -3,9 +3,9 @@
     <ul>
         @foreach ($category as $cat)
             <li>
-                <a href="{{ route('category.show', ['cat' => $cat['id']]) }}">
+                <a href="{{ route('category.show', ['category' => $cat['id']]) }}">
                     <!-- rende i link cliccabili -->
-                    {{ $category['name'] }}
+                    {{ $cat['name'] }}
                 </a>
             </li>
         @endforeach

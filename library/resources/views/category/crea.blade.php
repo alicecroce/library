@@ -25,8 +25,8 @@
                         <!-- name -->
                         <div class="mb-3">
                             <label for="name" class="form-label">Nome categoria</label>
-                            <input class="form-control" id="name" name="title" type="text"
-                                value="{{ old('name') }}" placeholder="Inserisci il nome della categoria">
+                            <input class="form-control" name="name" type="text" value="{{ old('name') }}"
+                                placeholder="Inserisci il nome della categoria">
 
                         </div>
 

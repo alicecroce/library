@@ -29,12 +29,11 @@ class CategoryController extends Controller
         Category::create([
             'name' => $request->name,
         ]);
+        return redirect()->route('category.index');
     }
 
     public function show(Category $category)
     {
-        $mycat = Category::findOrFail($category);
-
-        return view('category.show', compact('mycat'));
+        return view('category.show', compact('category'));
     }
 }
