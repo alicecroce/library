@@ -1,4 +1,4 @@
-<x-main>
+<x-main headerTitle='Scegli un libro da selezionare'>
 
     <ul>
         @foreach ($books as $book)
