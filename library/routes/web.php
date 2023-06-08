@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 //->step3: settale nel Controller
 //step4: crea le view
 
-//Route::get('/', [PublicController::class, 'homepage'])->name('books.homepage');
+Route::get('/', [PublicController::class, 'home'])->name('books.home');
 
 Route::get('/book', [PublicController::class, 'index'])->name('books.index');
 Route::get('/book/crea', [PublicController::class, 'create'])->name('books.create'); //FORM

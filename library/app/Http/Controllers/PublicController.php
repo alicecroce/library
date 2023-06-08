@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class PublicController extends Controller
 {
+    public function home()
+    {
+        return view('home');
+    }
+
+
     public function index()
     {
         $books = Book::all(); //ottiene tutti i record presenti nella tabella books
