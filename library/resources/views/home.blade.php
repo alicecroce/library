@@ -1,4 +1,4 @@
-<x-main headerTitle="Ciao prova">
+<x-main>
 
     ciao prova prova
 

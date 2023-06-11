@@ -1,5 +1,5 @@
 <?php
-//gereto con il comando php artisan make:request
+//generato con il comando php artisan make:request
 
 namespace App\Http\Requests;
 

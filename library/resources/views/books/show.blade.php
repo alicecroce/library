@@ -1,4 +1,4 @@
-<x-main headerTitle='Dettagli del libro selezionato'>
+<x-main>
 
     <div class="col-md-6">
         <img src="{{ empty($book->image) ? Storage::url('/images/default.png') : Storage::url($book->image) }}"

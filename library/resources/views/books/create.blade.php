@@ -1,4 +1,4 @@
-<x-main headerTitle='Inserisci un nuovo libro'>
+<x-main>
 
     <section class="py-5">
         <div class="container px-5">

@@ -5,9 +5,8 @@
             <div class=" rounded-3 py-5 px-4 px-md-5 mb-5">
                 <div class="row gx-5 justify-content-center">
 
-
                     <!-- post del form -->
-                    <form action="{{ route('register') }}" method="POST">
+                    <form action="{{ route('login') }}" method="POST">
                         @method('POST')
                         @csrf
                         <!-- token per la protezione dei dati -->
@@ -23,11 +22,6 @@
                             </div>
                         @endif
 
-                        <!-- name -->
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Nome utente</label>
-                            <input class="form-control" id="name" name="name" type="text" required>
-                        </div>
                         <!-- mail -->
                         <div class="mb-3">
                             <label for="email" class="form-label">Email utente</label>
@@ -38,17 +32,11 @@
                             <label for="password" class="form-label">Password</label>
                             <input class="form-control" id="password" name="password" type="password" required>
                         </div>
-                        <!-- conferma password -->
-                        <div class="mb-3">
-                            <label for="password_confirmation" class="form-label">Conferma password</label>
-                            <input class="form-control" id="password_confirmation" name="password_confirmation"
-                                type="password" required>
-                        </div>
 
                         <!--button -->
+                        <button class="btn btn-primary" type="submit">Login</button>
+                        <a href="{{ route('register') }}" class="btn btn-outline-primary">Non sei iscritto?</a>
 
-                        <button class="btn btn-primary" type="submit">Registrati!</button>
-                        <a href="{{ route('login') }}" class="btn btn-outline-primary">Già iscritto?</a>
 
                     </form>
                 </div>
@@ -56,10 +44,5 @@
         </div>
 
     </section>
-
-
-
-
-
 
 </x-main>

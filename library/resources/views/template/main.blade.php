@@ -13,7 +13,6 @@
 
     <x-nav />
 
-    <x-header headerTitle="{{ $headerTitle }}" />
 
     <div class="min-vh-100">
         <!-- serve a creare la barra di scorrimento -->
