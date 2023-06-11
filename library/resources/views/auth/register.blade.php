@@ -45,8 +45,6 @@
                                 type="password" required>
                         </div>
 
-
-
                         <!--button -->
                         <div class="d-grid">
                             <button class="btn btn-primary btn-lg" type="submit">Registrati!</button>
