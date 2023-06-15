@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PublicController;
 use Illuminate\Support\Facades\Route;
@@ -40,3 +41,5 @@ Route::get('/category/{category}/detail', [CategoryController::class, 'show'])->
 Route::get('/category/{category}/modifica', [CategoryController::class, 'edit'])->name('category.edit')->middleware('auth');
 Route::put('/category/{category}', [CategoryController::class, 'update'])->name('category.update')->middleware('auth');
 Route::delete('/category/{category}', [CategoryController::class, 'destroy'])->name('category.delete')->middleware('auth');
+
+Route::resource('authors', AuthorController::class);

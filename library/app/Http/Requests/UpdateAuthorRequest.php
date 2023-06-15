@@ -11,7 +11,7 @@ class UpdateAuthorRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,19 @@ class UpdateAuthorRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string',
+            'surname' => 'required|string',
+            'birth' => 'date',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+
+            'name.required' => 'E richiesto il nome dell autore',
+            'surname.required' => 'Inserisci il cognome dell autore',
+            'birth.date'=>'E richiesta una data di nascita'
         ];
     }
 }

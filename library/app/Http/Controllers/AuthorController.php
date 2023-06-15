@@ -8,12 +8,19 @@ use App\Http\Requests\UpdateAuthorRequest;
 
 class AuthorController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index');
+    }
+
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $authors = Author::all(); //ottiene tutti i record presenti nella tabella author
+        return view('authors.index', ['authors' => $authors]); //può diventare return view('books.index', compact ('books'));
     }
 
     /**
@@ -21,7 +28,7 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        //
+        return view('authors.create');
     }
 
     /**
@@ -29,7 +36,14 @@ class AuthorController extends Controller
      */
     public function store(StoreAuthorRequest $request)
     {
-        //
+        Author::create([
+            "name" => $request->name,
+            "surname" => $request->surname,
+            "birth" => $request->birth,
+
+        ]);
+
+        return redirect()->route('authors.index')->with('success', 'Libro caricato correttamente!');
     }
 
     /**
@@ -37,7 +51,7 @@ class AuthorController extends Controller
      */
     public function show(Author $author)
     {
-        //
+        return view('authors.show', compact('author'));
     }
 
     /**
@@ -45,7 +59,7 @@ class AuthorController extends Controller
      */
     public function edit(Author $author)
     {
-        //
+        return view('authors.edit', compact('author'));
     }
 
     /**
@@ -53,7 +67,15 @@ class AuthorController extends Controller
      */
     public function update(UpdateAuthorRequest $request, Author $author)
     {
-        //
+
+        $author->update([
+            'name' => $request->input('name'),
+            'surname' => $request->surname,
+            'birth' => $request->birth,
+        ]);
+
+        return redirect()->route('authors.index')
+            ->with('success', 'Modifica avvenuta con successo!');
     }
 
     /**
@@ -61,6 +83,8 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author)
     {
-        //
+        $author->delete();
+        return redirect()->route('authors.index')
+            ->with('success', 'Cancellazione avvenuta con successo!');
     }
 }

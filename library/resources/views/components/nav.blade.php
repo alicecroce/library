@@ -20,6 +20,10 @@
                     <a class="nav-link" href="{{ route('category.create') }}">Inserisci una categoria</a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('authors.create') }}">Inserisci un autore</a>
+                </li>
+
                 <li class="nav-item dropdown">
                     @auth
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
