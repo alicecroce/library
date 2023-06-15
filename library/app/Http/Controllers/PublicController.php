@@ -17,7 +17,7 @@ class PublicController extends Controller
     public function index()
     {
         $books = Book::all(); //ottiene tutti i record presenti nella tabella books
-        return view('books.index', ['books' => $books]);
+        return view('books.index', ['books' => $books]); //può diventare return view('books.index', compact ('books'));
     }
 
     public function create()
@@ -76,5 +76,39 @@ class PublicController extends Controller
         //$mybook = Book::findOrFail($book); METODO 3
 
         return view('books.show', compact('book')); //si usa al posto di questo ['ciccio' => $ginogini] SE E SOLO SE chiave e valore sono identici, in questo esempio non lo sono quindi non si potrà utilizzare, questo NO
+    }
+
+    public function edit(Book $book) // a differenza di SHOW, ha una logica che è descritta da un form di modifica dei dati
+    {
+        return view('books.edit', compact('book'));
+    }
+
+    public function update(BookRequest $request, Book $book)
+    {
+        $path_image = '';
+
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $file_name = $request->file('image')->getClientOriginalName();
+            $path_image = $request->file('image')->storeAs('public/images', $file_name);
+            //storeAs->dove locare
+        }
+
+        $book->update([
+            'title' => $request->input('title'),
+            'author' => $request->author,
+            'pages' => $request->pages,
+            'year' => $request->year,
+            'image' => $path_image
+        ]);
+
+        return redirect()->route('books.index')
+            ->with('success', 'Modifica avvenuta con successo!');
+    }
+
+    public function destroy(Book $book)
+    {
+        $book->delete();
+        return redirect()->route('books.index')
+            ->with('success', 'Cancellazione avvenuta con successo!');
     }
 }

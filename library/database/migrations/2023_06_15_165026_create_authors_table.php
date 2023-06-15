@@ -11,9 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //protected $fillable=['author', 'title', 'pages','year', 'image','slug'];
-        Schema::create('categories', function (Blueprint $table) {
-            $table->string('name');
+        Schema::create('authors', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
@@ -22,8 +20,8 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void //questo rollbck cancellerà TUTTA A TABELLA
+    public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('authors');
     }
 };

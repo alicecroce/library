@@ -17,19 +17,20 @@
                     @endif
 
                     <!-- post del form -->
-                    <form action="{{ route('books.store') }}" method="POST" enctype="multipart/form-data">
-                        @method('POST')
+                    <form action="{{ route('books.update', ['book' => $book->id]) }}" method="POST"
+                        enctype="multipart/form-data">
+                        @method('PUT')
                         @csrf
                         <!-- token per la protezione dei dati -->
 
-                        <!-- name -->
+                        <!-- title -->
                         <div class="mb-3">
-                            <label for="title" class="form-label">Nome libro</label>
-                            <input class="form-control" id="title" name="title" type="text"
-                                value="{{ old('title') }}" placeholder="Inserisci nome del libro">
+                            <label for="name" class="form-label">Nome libro</label>
+                            <input class="form-control" id="name" name="title" type="text"
+                                value="{{ $book->title }}" placeholder="Inserisci titolo del libro">
                             @error('title')
                                 <span class="text-danger">
-                                    {{$message}}
+                                    {{ $messages }}
                                 </span>
                             @enderror
                         </div>
@@ -38,10 +39,10 @@
                         <div class="mb-3">
                             <label for="author">Nome Autore</label>
                             <input class="form-control" id="author" name="author" type="text"
-                                value="{{ old('author') }}" placeholder="Inserisci nome autore">
+                                value="{{ $book->author }}" placeholder="Inserisci nome autore">
                             @error('author')
                                 <span class="text-danger">
-                                    Autore obbligatorio!
+                                    {{ $messages }}
                                 </span>
                             @enderror
                         </div>
@@ -51,11 +52,11 @@
                         <div class="mb-3">
                             <label for="pages">Numero pagine Libro</label>
                             <input class="form-control" id="pages" name="pages" type="text"
-                                value="{{ old('pages') }}" placeholder="Inserisci numero di pagine">
+                                value="{{ $book->pages }}" placeholder="Inserisci numero di pagine">
 
                             @error('pages')
                                 <span class="text-danger">
-                                    Inserisci un valore numerico obbligatorio!
+                                    {{ $messages }}
                                 </span>
                             @enderror
                         </div>
@@ -64,11 +65,11 @@
                         <div class="mb-3">
                             <label for="year">Anno di pubblicazione</label>
                             <input class="form-control" id="year" name="year" type="text"
-                                value="{{ old('pages') }}" placeholder="Inserisci anno di pubblicazione">
+                                value="{{ $book->year }}" placeholder="Inserisci anno di pubblicazione">
 
                             @error('year')
                                 <span class="text-danger">
-                                    Inserisci un valore numerico obbligatorio!
+                                    {{ $messages }}
                                 </span>
                             @enderror
                         </div>
@@ -76,14 +77,12 @@
                         <!-- immagine-->
                         <div class="mb-3">
                             <label for="image">Anno di pubblicazione</label>
-                            <input class="form-control" id="image" name="image" type="file"
-                                value="{{ old('image') }}">
+                            <input class="form-control" id="image" name="image" type="file">
                         </div>
 
                         <!--button -->
-                        <div class="d-grid gap-3">
-                            <button class="btn btn-primary btn-lg p-2" type="submit">Inserisci!</button>
-                            <button class="btn btn-danger btn-lg p-2" type="reset">Cancella</button>
+                        <div class="d-grid">
+                            <button class="btn btn-primary btn-lg" type="submit">Aggiorna</button>
                         </div>
 
                     </form>
@@ -92,6 +91,11 @@
         </div>
 
     </section>
+
+
+
+
+
 
 
 </x-main>
