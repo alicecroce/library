@@ -11,7 +11,7 @@
             <li>
                 <a href="{{ route('books.show', ['book' => $book['id']]) }}">
                     <!-- rende i link cliccabili -->
-                    {{ $book['author'] }}-{{ $book['title'] }}-{{ $book['pages'] }}-{{ $book['year'] }}
+                    {{ $book['author_id'] }}-{{ $book['title'] }}-{{ $book['pages'] }}-{{ $book['year'] }}
                 </a>
                 <a href="{{ route('books.edit', ['book' => $book['id']]) }}">
                     <button>Modifica</button>

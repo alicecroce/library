@@ -23,7 +23,7 @@ class BookRequest extends FormRequest //LA CLASSE (a fine processo) VA INIETTATA
     public function rules(): array
     {
         return [ // questa funge da VALIDAZIONE
-            'author' => 'required',
+            'author_id' => 'required',
             'title' => 'required|string',
             'pages' => 'numeric',
             'year' => 'required|numeric',
@@ -34,8 +34,8 @@ class BookRequest extends FormRequest //LA CLASSE (a fine processo) VA INIETTATA
     public function messages(): array //questo metodo gestisce l'errore che compare quando la digitazione non è corretta
     {
         return [ //ricorda che devi inserire un messaggio per ogni caratteristica che vuoi assegnare
-            'author.required' => 'L autore è richiesto',
-            'author.string' => 'Sono richiesti caratteri alfanumerici',
+            'author_id.required' => 'L autore è richiesto',
+            'author_id.string' => 'Sono richiesti caratteri alfanumerici',
             'title.required' => 'E richiesto un titolo',
             'title.string' => 'Sono richiesti caratteri alfanumerici',
             'pages.numeric' => 'Sono richiesti caratteri numerici',

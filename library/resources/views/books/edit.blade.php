@@ -37,12 +37,18 @@
 
                         <!--autore  -->
                         <div class="mb-3">
-                            <label for="author">Nome Autore</label>
-                            <input class="form-control" id="author" name="author" type="text"
-                                value="{{ $book->author }}" placeholder="Inserisci nome autore">
-                            @error('author')
+                            <label for="author_id">Nome Autore</label>
+                            <select class="form-control" id="author_id" name="author_id">
+                                @foreach ($authors as $author)
+                                    <option @if ($book->author_id == $author->author_id) selected @endif
+                                        value="{{ $author->id }}">{{ $author->name }} {{ $author->surname }}
+                                    </option>
+                                @endforeach
+                            </select>
+
+                            @error('author_id')
                                 <span class="text-danger">
-                                    {{ $messages }}
+                                    {{ $message }}
                                 </span>
                             @enderror
                         </div>

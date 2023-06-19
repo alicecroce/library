@@ -8,7 +8,7 @@
     <div class="antialiased">
         <h2>Dettagli</h2>
         <h4>Titolo: {{ $book->title }}</h4>
-        <p>Autore: {{ $book->author }} </p>
+        <p>Autore: {{ $book->author->name }} {{ $book->author->surname }} </p>
         <p>Numero Pagine: {{ $book->pages }} </p>
     </div>
 

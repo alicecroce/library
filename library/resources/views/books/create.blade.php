@@ -29,19 +29,23 @@
                                 value="{{ old('title') }}" placeholder="Inserisci nome del libro">
                             @error('title')
                                 <span class="text-danger">
-                                    {{$message}}
+                                    {{ $message }}
                                 </span>
                             @enderror
                         </div>
 
                         <!--autore  -->
                         <div class="mb-3">
-                            <label for="author">Nome Autore</label>
-                            <input class="form-control" id="author" name="author" type="text"
-                                value="{{ old('author') }}" placeholder="Inserisci nome autore">
-                            @error('author')
+                            <label for="author_id">Nome Autore</label>
+                            <select class="form-control" id="author_id" name="author_id">
+                                @foreach ($authors as $author)
+                                <option value="{{$author->id}}">{{$author->name}} {{$author->surname}}</option>
+                                @endforeach
+                            </select>
+
+                            @error('author_id')
                                 <span class="text-danger">
-                                    Autore obbligatorio!
+                                    {{ $message }}
                                 </span>
                             @enderror
                         </div>

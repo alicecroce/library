@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\BookRequest;
+use App\Models\Author;
 use App\Models\Book;
 use Illuminate\Http\Request;
 
@@ -22,7 +23,8 @@ class PublicController extends Controller
 
     public function create()
     {
-        return view('books.create'); //crea un form per l'inserimento del libro
+        $authors = Author::all();
+        return view('books.create', compact('authors')); //crea un form per l'inserimento del libro
     }
 
     public function store(BookRequest $request)
@@ -57,7 +59,7 @@ class PublicController extends Controller
         Book::create([
             "title" => $request->title,
             "pages" => $request->pages,
-            "author" => $request->author,
+            "author_id" => $request->author_id,
             "year" => $request->year,
             "image" => $path_image,
         ]);
@@ -80,7 +82,8 @@ class PublicController extends Controller
 
     public function edit(Book $book) // a differenza di SHOW, ha una logica che è descritta da un form di modifica dei dati
     {
-        return view('books.edit', compact('book'));
+        $authors = Author::all();
+        return view('books.edit', ['book' => $book, 'authors' => $authors]);
     }
 
     public function update(BookRequest $request, Book $book)
@@ -95,7 +98,7 @@ class PublicController extends Controller
 
         $book->update([
             'title' => $request->input('title'),
-            'author' => $request->author,
+            'author_id' => $request->author_id,
             'pages' => $request->pages,
             'year' => $request->year,
             'image' => $path_image
