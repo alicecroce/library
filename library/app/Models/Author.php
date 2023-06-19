@@ -14,4 +14,9 @@ class Author extends Model
     protected $casts = [ //richiama la variabile esattamente per come la richiedo, è connesso con "format" presente nell'edit.blade.php
         'birth' => 'datetime',
     ];
-}//L'ho estrapolato da user.php dentro il model
+
+    public function books()
+    { //hasMany perchè ad un autore appartengono più libri
+        return $this->hasMany(Book::class);
+    }
+}
