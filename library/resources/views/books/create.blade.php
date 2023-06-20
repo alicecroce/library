@@ -39,7 +39,8 @@
                             <label for="author_id">Nome Autore</label>
                             <select class="form-control" id="author_id" name="author_id">
                                 @foreach ($authors as $author)
-                                <option value="{{$author->id}}">{{$author->name}} {{$author->surname}}</option>
+                                    <option value="{{ $author->id }}">{{ $author->name }} {{ $author->surname }}
+                                    </option>
                                 @endforeach
                             </select>
 

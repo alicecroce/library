@@ -42,4 +42,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function books(){//modificando l'utente, impongo che lui possa inserire e modificare più book"s" (one-to-many)
+        return $this->hasMany(User::class);
+    }
 }

@@ -11,8 +11,13 @@
             <li>
                 <a href="{{ route('books.show', ['book' => $book['id']]) }}">
                     <!-- rende i link cliccabili -->
-                    {{ $book['author_id'] }}-{{ $book['title'] }}-{{ $book['pages'] }}-{{ $book['year'] }}
+                    {{ $book['author_id'] }}-{{ $book['title'] }}-{{ $book->author->name . ' ' . $book->author->surname }}-{{ $book['pages'] }}-{{ $book['year'] }}
                 </a>
+
+                <a href="{{ route('books.show', ['book' => $book['id']]) }}">
+                    <button>Visualizza</button>
+                </a>
+
                 <a href="{{ route('books.edit', ['book' => $book['id']]) }}">
                     <button>Modifica</button>
                 </a>
@@ -20,8 +25,6 @@
                 <form action="{{ route('books.delete', ['book' => $book['id']]) }}" method="POST">
                     @method('DELETE')
                     @csrf
-
-                    <!--button -->
                     <button type="submit">Elimina</button>
 
                 </form>

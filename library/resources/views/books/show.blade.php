@@ -10,6 +10,8 @@
         <h4>Titolo: {{ $book->title }}</h4>
         <p>Autore: {{ $book->author->name }} {{ $book->author->surname }} </p>
         <p>Numero Pagine: {{ $book->pages }} </p>
+        <hr>
+        <p>Aggiunto da:{{ $book->user->name ?? 'Ignoto' }}</p>
     </div>
 
 </x-main>
