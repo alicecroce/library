@@ -18,7 +18,20 @@ class PublicController extends Controller
 
     public function index()
     {
-        $books = Book::all(); //ottiene tutti i record presenti nella tabella books
+        //$books = Book::all(); 
+        //ottiene tutti i record presenti nella tabella books
+
+        //per la where condition:
+        //1.l'itente deve essere autenticato
+        //2.ottengo l'id per l'utente autenticato
+        //3.filtro di dati di user_id
+        if (Auth::user()) {
+            //filtro (metodo statico sempre), il get serve a uscire.
+            $books = Book::where('user_id', Auth::user()->id)->get();
+        } else {
+            $books = Book::all();
+        }
+
         return view('books.index', ['books' => $books]); //può diventare return view('books.index', compact ('books'));
     }
 
@@ -58,11 +71,11 @@ class PublicController extends Controller
         //questa seconda parte ci permetterà di caricare i dati nel database
 
         Book::create([
-            "title" => $request->title,
-            "pages" => $request->pages,
-            "author_id" => $request->author_id,
-            "year" => $request->year,
-            "image" => $path_image,
+            'title' => $request->title,
+            'pages' => $request->pages,
+            'author_id' => $request->author_id,
+            'year' => $request->year,
+            'image' => $path_image,
             'user_id' => Auth::user()->id,
         ]);
 
@@ -84,7 +97,12 @@ class PublicController extends Controller
 
     public function edit(Book $book) // a differenza di SHOW, ha una logica che è descritta da un form di modifica dei dati
     {
+        if (!(Auth::user()->id == $book->user_id)) { //se la condizione NON è verificata allora abort altrimenti Authors::all
+            abort(401);
+        }
+
         $authors = Author::all();
+
         return view('books.edit', ['book' => $book, 'authors' => $authors]);
     }
 

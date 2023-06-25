@@ -7,8 +7,9 @@
     @endif
 
     <ul>
-        @foreach ($books as $book)
-            <li>
+        @forelse($books as $book)
+            <li>{{ $loop->iteration }}
+                <!-- numerazione no id -->
                 <a href="{{ route('books.show', ['book' => $book['id']]) }}">
                     <!-- rende i link cliccabili -->
                     {{ $book['author_id'] }}-{{ $book['title'] }}-{{ $book->author->name . ' ' . $book->author->surname }}-{{ $book['pages'] }}-{{ $book['year'] }}
@@ -18,19 +19,28 @@
                     <button>Visualizza</button>
                 </a>
 
-                <a href="{{ route('books.edit', ['book' => $book['id']]) }}">
-                    <button>Modifica</button>
-                </a>
+                @auth
+                    <!-- direttiva blade che ti permette di sapere se qualcuno è autenticato o no, se no comparirà solo il tasto di visualizzazione -->
+                    <a href="{{ route('books.edit', ['book' => $book['id']]) }}">
+                        <button>Modifica</button>
+                    </a>
+                @endauth
+                @guest
+                    Sono un ospite
+                @endguest
 
-                <form action="{{ route('books.delete', ['book' => $book['id']]) }}" method="POST">
-                    @method('DELETE')
-                    @csrf
-                    <button type="submit">Elimina</button>
-
-                </form>
+                @auth
+                    <form action="{{ route('books.delete', ['book' => $book['id']]) }}" method="POST">
+                        @method('DELETE')
+                        @csrf
+                        <button type="submit">Elimina</button>
+                    </form>
+                @endauth
 
             </li>
-        @endforeach
+        @empty
+            <p>Nessun libro</p>
+        @endforelse
     </ul>
 
 

@@ -5,7 +5,8 @@
         <h4>Nome: {{ $author->name }}</h4>
         <p>Cognome: {{ $author->surname }} </p>
         <p>Data di nascita: {{ $author->birth->format('d-m-y') }} </p>
-
+        <p>Età di: {{ $author->birth->diffForHumans() }} </p>
+        <!-- di default è in inglese, modifiche la lingua su config->app->'locale' -->
 
         @forelse ($author->books as $book)
             <div class="col-md-6">
